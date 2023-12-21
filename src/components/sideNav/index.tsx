@@ -71,6 +71,7 @@ export default function SideNav() {
     return (
       <div className="mt-4">
         <input
+          style={{width:200}}
           className="border-2 border-stone-200 rounded-lg p-1 px-2"
           placeholder="Search..."
         />

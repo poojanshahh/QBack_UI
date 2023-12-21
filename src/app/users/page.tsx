@@ -15,6 +15,8 @@ export default async function UserPage() {
         />
       </div>
       <UserList />
+      <link rel="icon" href="src\app\favicon.ico" />
+      
     </div>
   );
 }

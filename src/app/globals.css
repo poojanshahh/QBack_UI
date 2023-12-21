@@ -22,3 +22,16 @@
 .cp {
   cursor: pointer;
 }
+
+.margined{
+  margin-top: 15px;
+}
+
+.marginTitle{
+  margin-top: 20px;
+}
+
+.otable-column {
+  display: flex;
+  align-items:center;
+}
