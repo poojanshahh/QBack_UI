@@ -38,12 +38,12 @@ export default function AddUser() {
         setSuccessMessage('User Added Successfully');
         setTimeout(() => {
           setSuccessMessage('');
-          router.push('/users'); // Redirect to the UserList page
+          router.push('/users'); 
         }, 2000);
-        // Redirect or perform other actions as needed
+        
       } catch (error) {
         console.error('There was an error!', error);
-        // Handle error state or display an error message
+        
       }
     },
     
@@ -68,9 +68,6 @@ export default function AddUser() {
       }
       return errors;
     },
-
-
-      // Validation logic remains unchanged
   });
 
 

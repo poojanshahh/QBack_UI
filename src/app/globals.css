@@ -35,3 +35,11 @@
   display: flex;
   align-items:center;
 }
+
+.search-box{
+  width: 400px;
+  margin-left: 30%;
+  height: 38px;
+  padding-left: 30px;
+  border: solid 1px;
+}

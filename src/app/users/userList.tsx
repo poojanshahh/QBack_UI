@@ -11,6 +11,7 @@ const UserColumns = [
 
 export default function UserList() {
     const [userData, setUserData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState(""); 
     const router = useRouter();
 
     useEffect(() => {
@@ -31,14 +32,37 @@ export default function UserList() {
         router.push(`/users/${row._id}`);
     };
 
+    const filterData = (data) => {
+        return data.filter((user) =>
+            Object.values(user).some((value) =>
+                typeof value === "string" && value.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+        );
+    };
+
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value); 
+    };
+
+    const filteredData = filterData(userData); 
+
     return (
-        <OTable
-            isFullWidthTable
-            stickyHeader
-            columns={UserColumns}
-            data={userData}
-            onRowClick={openUser}
-            cellClassName="otable-column"
-        />
+        <div>
+            <input
+            className="search-box"
+                type="text"
+                placeholder="Search Term"
+                value={searchQuery}
+                onChange={handleSearch}
+            />
+            <OTable
+                isFullWidthTable
+                stickyHeader
+                columns={UserColumns}
+                data={searchQuery ? filteredData : userData} // Render filtered data if search query exists
+                onRowClick={openUser}
+                cellClassName="otable-column"
+            />
+        </div>
     );
 }
