@@ -1,4 +1,5 @@
-"use client";
+"use client"
+
 import React, { useEffect, useState } from "react";
 import { ColumnBuilder, OTable } from "@/fwk/oTable";
 import { useRouter } from "next/navigation";
@@ -28,9 +29,21 @@ export default function UserList() {
         }
     };
 
-    const openUser = (row) => {
-        router.push(`/users/${row._id}`);
+    const highlightSearchTerm = (text, searchTerm) => {
+        if (!searchTerm.trim()) {
+            return text;
+        }
+    
+        const regex = new RegExp(`(${searchTerm})`, "gi");
+        return text.split(regex).map((part, index) => {
+            if (part.match(regex)) {
+                return <span key={index} className="highlight">{part}</span>;
+            }
+            return part;
+        });
     };
+    
+    
 
     const filterData = (data) => {
         return data.filter((user) =>
@@ -45,11 +58,11 @@ export default function UserList() {
     };
 
     const filteredData = filterData(userData); 
-
+    
     return (
         <div>
             <input
-            className="search-box"
+                className="search-box"
                 type="text"
                 placeholder="Search Term"
                 value={searchQuery}
@@ -59,8 +72,12 @@ export default function UserList() {
                 isFullWidthTable
                 stickyHeader
                 columns={UserColumns}
-                data={searchQuery ? filteredData : userData} // Render filtered data if search query exists
-                onRowClick={openUser}
+                data={searchQuery ? filteredData.map(user => ({
+                    ...user,
+                    username: highlightSearchTerm(user.username, searchQuery),
+                    name: highlightSearchTerm(user.name, searchQuery),
+                    role: highlightSearchTerm(user.role, searchQuery),
+                })) : userData}
                 cellClassName="otable-column"
             />
         </div>

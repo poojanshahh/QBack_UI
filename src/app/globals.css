@@ -43,3 +43,8 @@
   padding-left: 30px;
   border: solid 1px;
 }
+/* Add this to your CSS file */
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
