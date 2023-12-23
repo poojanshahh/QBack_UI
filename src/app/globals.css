@@ -46,5 +46,10 @@
 /* Add this to your CSS file */
 .highlight {
   background-color: yellow;
-  font-weight: bold;
+}
+
+.buttonStyle{
+  border: solid 1px;
+  width: 70px;
+  margin-right: 20px;
 }
